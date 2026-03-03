@@ -7,12 +7,14 @@ import pl.lipov.technologieinternetowe.domain.repository.GamesRepository
 
 class GamesRemoteRepository : GamesRepository {
 
-    override suspend fun getAllGames(): List<Game> =
+    override suspend fun getAllGames(
+        magazineNumber: Int
+    ): List<Game> =
         GamesRemoteDataSource
-            .getGames()
+            .getAllGames(magazineNumber)
             .map { it.toGame() }
 
-    override suspend fun getGameDetails(
-        id: String
-    ): Game? = null
+    override suspend fun playGame(
+        gameUrl: String
+    ) = GamesRemoteDataSource.playGame(gameUrl)
 }

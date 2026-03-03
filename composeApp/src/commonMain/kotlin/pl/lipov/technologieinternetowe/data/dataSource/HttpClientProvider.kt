@@ -9,6 +9,9 @@ import kotlinx.serialization.json.Json
 
 object HttpClientProvider {
 
+    const val HOST = "192.168.0.61"
+    const val PORT = 8080
+
     val httpClient = HttpClient {
 
         install(ContentNegotiation) {
@@ -19,8 +22,9 @@ object HttpClientProvider {
 
         install(DefaultRequest) {
             url {
-                protocol = URLProtocol.HTTPS
-                host = "jsonplaceholder.typicode.com"
+                protocol = URLProtocol.HTTP
+                host = HOST
+                port = PORT
             }
         }
     }
