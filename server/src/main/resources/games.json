@@ -1,0 +1,126 @@
+{
+  "retro": [
+    {
+      "number": 1,
+      "games": [
+        {
+          "id": "star_craft",
+          "title": "Star Craft",
+          "platform": "windows",
+          "gogUrl": null,
+          "steamUrl": null,
+          "playable": true
+        },
+        {
+          "id": "duke3d",
+          "title": "Duke Nukem 3D",
+          "platform": "dos",
+          "gogUrl": null,
+          "steamUrl": null,
+          "playable": true
+        },
+        {
+          "id": "franko",
+          "title": "Franko: The Crazy Revenge",
+          "platform": "dos",
+          "gogUrl": null,
+          "steamUrl": null,
+          "playable": true
+        },
+        {
+          "id": "comix_zone",
+          "title": "Comix Zone",
+          "platform": "megaDrive",
+          "gogUrl": null,
+          "steamUrl": null,
+          "playable": true
+        },
+        {
+          "id": "final_fight_2",
+          "title": "Final Fight 2",
+          "platform": "snes",
+          "gogUrl": null,
+          "steamUrl": null,
+          "playable": true
+        },
+        {
+          "id": "super_mario_bros_3",
+          "title": "Super Mario Bros 3",
+          "platform": "nes",
+          "gogUrl": null,
+          "steamUrl": null,
+          "playable": true
+        },
+        {
+          "id": "donkey_kong_country_2",
+          "title": "Donkey Kong Country 2",
+          "platform": "snes",
+          "gogUrl": null,
+          "steamUrl": null,
+          "playable": true
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "games": [
+        {
+          "id": "medal_of_honor",
+          "title": "Medal of Honor: Allied Assault",
+          "platform": "windows",
+          "gogUrl": "https://www.gog.com/en/game/medal_of_honor_allied_assault_war_chest",
+          "steamUrl": null,
+          "playable": true
+        },
+        {
+          "id": "half_life",
+          "title": "Half-Life",
+          "platform": null,
+          "gogUrl": null,
+          "steamUrl": "https://store.steampowered.com/app/70/HalfLife/",
+          "playable": false
+        },
+        {
+          "id": "doom",
+          "title": "Doom",
+          "platform": "windows",
+          "gogUrl": "https://www.gog.com/en/game/doom_doom_ii",
+          "steamUrl": null,
+          "playable": true
+        },
+        {
+          "id": "wolfenstein_3d",
+          "title": "Wolfenstein 3d",
+          "platform": "windows",
+          "gogUrl": "https://www.gog.com/en/game/wolfenstein_3d",
+          "steamUrl": null,
+          "playable": true
+        },
+        {
+          "id": "far_cry",
+          "title": "FarCry",
+          "platform": "windows",
+          "gogUrl": "https://www.gog.com/pl/game/far_cry",
+          "steamUrl": null,
+          "playable": false
+        },
+        {
+          "id": "quake",
+          "title": "Quake",
+          "platform": null,
+          "gogUrl": "https://www.gog.com/pl/game/quake_the_offering",
+          "steamUrl": null,
+          "playable": false
+        },
+        {
+          "id": "loaded",
+          "title": "Loaded",
+          "platform": "ps1",
+          "gogUrl": null,
+          "steamUrl": null,
+          "playable": true
+        }
+      ]
+    }
+  ]
+}
