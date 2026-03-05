@@ -6,8 +6,12 @@ import androidx.compose.ui.window.application
 fun main() = application {
     Window(
         onCloseRequest = ::exitApplication,
-        title = "TechnologieInternetowe",
+        title = "CD Action Retro",
+        resizable = false,
+        undecorated = false
     ) {
+        window.extendedState = java.awt.Frame.MAXIMIZED_BOTH
         App()
     }
 }
+
