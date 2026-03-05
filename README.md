@@ -1,5 +1,1 @@
-Backend
-- https://github.com/KrzychuLipka/TechnologieInternetoweBackend
-
-ROMy
-Pendrive (Robyg)
+Katalogi server\emulators, server\magazines, server\roms, server\src\main\resources\images przechowywane są w pamięci masowej. 
