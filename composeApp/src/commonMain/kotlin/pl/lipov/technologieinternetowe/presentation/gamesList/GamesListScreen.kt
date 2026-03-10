@@ -1,29 +1,39 @@
 package pl.lipov.technologieinternetowe.presentation.gamesList
 
-import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import pl.lipov.technologieinternetowe.domain.model.Game
+import androidx.compose.ui.unit.dp
+import pl.lipov.technologieinternetowe.presentation.theme.Dimens
 
 @Composable
 fun GamesListScreen(
     modifier: Modifier,
-    onGameClick: (Game) -> Unit
+    viewModel: GamesListViewModel
 ) {
-    val viewModel = remember { GamesListViewModel() }
     val gamesState = viewModel.games.collectAsState()
-    val games = gamesState.value
 
-    LazyRow(
-        modifier = modifier
+    LazyVerticalGrid(
+        columns = GridCells.Adaptive(minSize = Dimens.GameBoxWidth),
+        modifier = modifier,
+        contentPadding = PaddingValues(Dimens.PaddingMedium),
+        horizontalArrangement = Arrangement.spacedBy(Dimens.PaddingMedium),
+        verticalArrangement = Arrangement.spacedBy(20.dp)
     ) {
-        items(games) { game ->
+        items(gamesState.value) { game ->
             GameItem(
                 game = game,
-                onGameClick = onGameClick
+                onGameUrlClick = {
+                    viewModel.handleGameUrlClick(it.gogUrl)
+                },
+                onRunGameClick = {
+                    viewModel.handleRunGameButtonClick(it.gogUrl)
+                }
             )
         }
     }

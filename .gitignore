@@ -17,3 +17,13 @@ captures
 !*.xcworkspace/contents.xcworkspacedata
 **/xcshareddata/WorkspaceSettings.xcsettings
 node_modules/
+/server/roms/far_cry-1.bin
+/server/roms/jazz_jackrabbit_2.exe
+/server/roms/medal_of_honor.exe
+/server/roms/medal_of_honor-1.bin
+/server/roms/medal_of_honor-2.bin
+/server/roms/moto_racer.exe
+/server/roms/prehistorik_2.exe
+/server/roms/screamer.exe
+/server/roms/doom.exe
+/server/roms/far_cry.exe

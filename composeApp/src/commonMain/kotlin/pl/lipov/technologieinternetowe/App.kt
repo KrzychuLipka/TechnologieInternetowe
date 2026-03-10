@@ -7,17 +7,22 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.viewmodel.compose.viewModel
 import pl.lipov.technologieinternetowe.presentation.gamesList.GamesListScreen
+import pl.lipov.technologieinternetowe.presentation.gamesList.GamesListViewModel
 
 @Composable
 @Preview
 fun App() {
+    val viewModel: GamesListViewModel = viewModel { GamesListViewModel() }
+
     MaterialTheme {
         Scaffold { padding ->
             GamesListScreen(
                 modifier = Modifier
                     .padding(padding)
-                    .fillMaxSize(), onGameClick = { }
+                    .fillMaxSize(),
+                viewModel = viewModel
             )
         }
     }
