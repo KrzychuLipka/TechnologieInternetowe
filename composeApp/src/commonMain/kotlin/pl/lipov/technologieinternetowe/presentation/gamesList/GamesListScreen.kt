@@ -32,7 +32,7 @@ fun GamesListScreen(
                     viewModel.handleGameUrlClick(it.gogUrl)
                 },
                 onRunGameClick = {
-                    viewModel.handleRunGameButtonClick(it.gogUrl)
+                    viewModel.handleRunGameButtonClick(it.id)
                 }
             )
         }
