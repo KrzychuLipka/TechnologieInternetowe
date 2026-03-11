@@ -9,15 +9,9 @@ class GamesLocalRepository : GamesRepository {
 
     override fun getAllGames(): Flow<List<Game>> = GamesLocalDataSource.games
 
-    override suspend fun markAsCompleted(
+    override suspend fun toggleGameCompletion(
         gameId: String
     ) {
-        GamesLocalDataSource.markAsCompleted(gameId)
-    }
-
-    override suspend fun markAsUncompleted(
-        gameId: String
-    ) {
-        GamesLocalDataSource.markAsUncompleted(gameId)
+        GamesLocalDataSource.toggleGameCompletion(gameId)
     }
 }

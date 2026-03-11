@@ -26,8 +26,10 @@ import technologieinternetowe.composeapp.generated.resources.far_cry
 import technologieinternetowe.composeapp.generated.resources.fear
 import technologieinternetowe.composeapp.generated.resources.flashback
 import technologieinternetowe.composeapp.generated.resources.flight_of_the_amazon_queen
+import technologieinternetowe.composeapp.generated.resources.ic_checked
 import technologieinternetowe.composeapp.generated.resources.ic_gog
 import technologieinternetowe.composeapp.generated.resources.ic_play
+import technologieinternetowe.composeapp.generated.resources.ic_unchecked
 import technologieinternetowe.composeapp.generated.resources.jazz_jackrabbit_2
 import technologieinternetowe.composeapp.generated.resources.medal_of_honor
 import technologieinternetowe.composeapp.generated.resources.mortal_kombat
@@ -77,7 +79,8 @@ private val gameBoxes = mapOf(
 fun GameItem(
     game: Game,
     onGameUrlClick: (Game) -> Unit,
-    onRunGameClick: (Game) -> Unit
+    onRunGameButtonClick: (Game) -> Unit,
+    onToggleCompletionButtonClick: (Game) -> Unit
 ) {
     val gameBoxRes = gameBoxes.getOrElse(game.id) { Res.drawable.doom }
 
@@ -122,7 +125,19 @@ fun GameItem(
                     modifier = Modifier
                         .width(32.dp)
                         .height(32.dp)
-                        .clickable { onRunGameClick(game) }
+                        .clickable { onRunGameButtonClick(game) }
+                )
+
+                val completionButton =
+                    if (game.completed) Res.drawable.ic_checked else Res.drawable.ic_unchecked
+
+                Image(
+                    painter = painterResource(completionButton),
+                    contentDescription = "Completion",
+                    modifier = Modifier
+                        .width(32.dp)
+                        .height(32.dp)
+                        .clickable { onToggleCompletionButtonClick(game) }
                 )
             }
         }

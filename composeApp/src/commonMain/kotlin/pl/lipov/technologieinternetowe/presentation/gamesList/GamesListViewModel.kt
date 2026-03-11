@@ -9,12 +9,20 @@ import kotlinx.coroutines.launch
 import pl.lipov.technologieinternetowe.data.repository.GamesLocalRepository
 import pl.lipov.technologieinternetowe.domain.model.Game
 import pl.lipov.technologieinternetowe.domain.useCase.GetAllGamesUseCase
+import pl.lipov.technologieinternetowe.domain.useCase.ToggleGameCompletionStateUseCase
 import pl.lipov.technologieinternetowe.domain.utils.openGameUrl
 import pl.lipov.technologieinternetowe.domain.utils.runGame
 
 class GamesListViewModel : ViewModel() {
 
+    companion object {
+        private const val STOP_SUBSCRIPTION_TIMEOUT_MS = 5_000L
+    }
+
     private val getAllGamesUseCase = GetAllGamesUseCase(
+        repository = GamesLocalRepository()
+    )
+    private val toggleGameCompletionStateUseCase = ToggleGameCompletionStateUseCase(
         repository = GamesLocalRepository()
     )
 
@@ -22,7 +30,7 @@ class GamesListViewModel : ViewModel() {
         getAllGamesUseCase()
             .stateIn(
                 scope = viewModelScope,
-                started = SharingStarted.Eagerly,
+                started = SharingStarted.WhileSubscribed(STOP_SUBSCRIPTION_TIMEOUT_MS),
                 initialValue = emptyList()
             )
 
@@ -37,6 +45,14 @@ class GamesListViewModel : ViewModel() {
     ) {
         viewModelScope.launch {
             runGame(gameId)
+        }
+    }
+
+    fun handleToggleGameCompletionButtonClick(
+        gameId: String
+    ) {
+        viewModelScope.launch {
+            toggleGameCompletionStateUseCase(gameId)
         }
     }
 }

@@ -5,6 +5,5 @@ import pl.lipov.technologieinternetowe.domain.model.Game
 
 interface GamesRepository {
     fun getAllGames(): Flow<List<Game>>
-    suspend fun markAsCompleted(gameId: String)
-    suspend fun markAsUncompleted(gameId: String)
+    suspend fun toggleGameCompletion(gameId: String)
 }

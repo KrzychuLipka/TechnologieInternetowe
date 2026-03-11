@@ -140,30 +140,17 @@ object GamesLocalDataSource {
     )
     val games: StateFlow<List<Game>> = _games.asStateFlow()
 
-    fun markAsCompleted(
+    fun toggleGameCompletion(
         gameId: String
-    ) {
-        changeCompletionState(gameId, true)
-    }
-
-    private fun changeCompletionState(
-        gameId: String,
-        completed: Boolean
     ) {
         _games.update { gamesList ->
             gamesList.map { game ->
                 if (game.id == gameId) {
-                    game.copy(completed = completed)
+                    game.copy(completed = !game.completed)
                 } else {
                     game
                 }
             }
         }
-    }
-
-    fun markAsUncompleted(
-        gameId: String
-    ) {
-        changeCompletionState(gameId, false)
     }
 }
