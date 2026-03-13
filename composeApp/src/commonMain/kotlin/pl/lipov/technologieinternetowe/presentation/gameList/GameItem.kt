@@ -1,4 +1,4 @@
-package pl.lipov.technologieinternetowe.presentation.gamesList
+package pl.lipov.technologieinternetowe.presentation.gameList
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -22,6 +22,7 @@ import technologieinternetowe.composeapp.generated.resources.Res
 import technologieinternetowe.composeapp.generated.resources.crusader_no_remorse
 import technologieinternetowe.composeapp.generated.resources.dino_crisis_2
 import technologieinternetowe.composeapp.generated.resources.doom
+import technologieinternetowe.composeapp.generated.resources.fallout
 import technologieinternetowe.composeapp.generated.resources.far_cry
 import technologieinternetowe.composeapp.generated.resources.fear
 import technologieinternetowe.composeapp.generated.resources.flashback
@@ -44,8 +45,10 @@ import technologieinternetowe.composeapp.generated.resources.rollercoaster_tycoo
 import technologieinternetowe.composeapp.generated.resources.rune
 import technologieinternetowe.composeapp.generated.resources.screamer
 import technologieinternetowe.composeapp.generated.resources.ski_jumping_world_cup
+import technologieinternetowe.composeapp.generated.resources.star_wars_dark_forces
 import technologieinternetowe.composeapp.generated.resources.star_wars_galactic_battlegrounds
 import technologieinternetowe.composeapp.generated.resources.streets_of_rage_4
+import technologieinternetowe.composeapp.generated.resources.teenagent
 import technologieinternetowe.composeapp.generated.resources.tomb_raider
 
 private val gameBoxes = mapOf(
@@ -73,6 +76,9 @@ private val gameBoxes = mapOf(
     "star_wars_galactic_battlegrounds" to Res.drawable.star_wars_galactic_battlegrounds,
     "dino_crisis_2" to Res.drawable.dino_crisis_2,
     "tomb_raider" to Res.drawable.tomb_raider,
+    "teenagent" to Res.drawable.teenagent,
+    "fallout" to Res.drawable.fallout,
+    "star_wars_dark_forces" to Res.drawable.star_wars_dark_forces,
 )
 
 @Composable

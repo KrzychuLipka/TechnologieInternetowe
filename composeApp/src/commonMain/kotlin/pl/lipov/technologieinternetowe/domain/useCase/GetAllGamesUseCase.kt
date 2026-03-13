@@ -8,5 +8,7 @@ class GetAllGamesUseCase(
     private val repository: GamesRepository
 ) {
 
-    operator fun invoke(): Flow<List<Game>> = repository.getAllGames()
+    operator fun invoke(
+        magazineNumber: Int
+    ): Flow<List<Game>> = repository.getAllGames(magazineNumber)
 }

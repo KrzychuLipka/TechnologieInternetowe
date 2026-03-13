@@ -4,5 +4,8 @@ data class Game(
     val id: String,
     val title: String,
     val gogUrl: String,
-    val completed: Boolean = false
+    val magazineNumber: Int,
+    val lastPlayed: Int? = null,
+    val completed: Boolean = false,
+    val additionalGames: List<String> = emptyList()
 )

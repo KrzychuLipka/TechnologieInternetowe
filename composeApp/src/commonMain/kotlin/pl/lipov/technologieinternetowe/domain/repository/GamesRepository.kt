@@ -4,6 +4,6 @@ import kotlinx.coroutines.flow.Flow
 import pl.lipov.technologieinternetowe.domain.model.Game
 
 interface GamesRepository {
-    fun getAllGames(): Flow<List<Game>>
+    fun getAllGames(magazineNumber: Int): Flow<List<Game>>
     suspend fun toggleGameCompletion(gameId: String)
 }

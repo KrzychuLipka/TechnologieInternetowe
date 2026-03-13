@@ -1,4 +1,4 @@
-package pl.lipov.technologieinternetowe.presentation.gamesList
+package pl.lipov.technologieinternetowe.presentation.gameList
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -26,8 +26,10 @@ class GamesListViewModel : ViewModel() {
         repository = GamesLocalRepository()
     )
 
-    val games: StateFlow<List<Game>> =
-        getAllGamesUseCase()
+    fun getAllGames(
+        magazineNumber: Int
+    ): StateFlow<List<Game>> =
+        getAllGamesUseCase(magazineNumber)
             .stateIn(
                 scope = viewModelScope,
                 started = SharingStarted.WhileSubscribed(STOP_SUBSCRIPTION_TIMEOUT_MS),
