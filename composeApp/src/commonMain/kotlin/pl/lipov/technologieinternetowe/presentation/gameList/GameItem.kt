@@ -1,13 +1,13 @@
 package pl.lipov.technologieinternetowe.presentation.gameList
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
@@ -18,8 +18,6 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import org.jetbrains.compose.resources.painterResource
 import pl.lipov.technologieinternetowe.domain.model.Game
-import pl.lipov.technologieinternetowe.presentation.theme.DarkYellow
-import pl.lipov.technologieinternetowe.presentation.theme.Yellow
 import pl.lipov.technologieinternetowe.presentation.theme.Dimens
 import technologieinternetowe.composeapp.generated.resources.Res
 import technologieinternetowe.composeapp.generated.resources.crusader_no_remorse
@@ -96,72 +94,56 @@ fun GameItem(
 
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = modifier.width(Dimens.GameBoxWidth)
+        verticalArrangement = Arrangement.SpaceBetween, // żeby obrazek i przyciski się rozłożyły
+        modifier = modifier
+            .fillMaxHeight()
+            .padding(Dimens.PaddingSmall)
     ) {
 
-        Box {
-            Spacer(
+        Image(
+            painter = painterResource(gameBoxRes),
+            contentDescription = game.title,
+            contentScale = ContentScale.FillHeight,
+            modifier = Modifier.weight(1f)
+        )
+
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier.padding(Dimens.PaddingSmall),
+        ) {
+            Image(
+                painter = painterResource(Res.drawable.ic_gog),
+                contentDescription = "GOG",
                 modifier = Modifier
-                    .background(DarkYellow)
-                    .width(Dimens.GameBoxWidth)
-                    .height(48.dp)
-                    .align(Alignment.BottomCenter),
+                    .width(32.dp)
+                    .height(32.dp)
+                    .clickable { onGameUrlClick(game) }
             )
+
+            Spacer(Modifier.width(Dimens.PaddingStandard))
 
             Image(
-                painter = painterResource(gameBoxRes),
-                contentDescription = game.title,
-                contentScale = ContentScale.FillHeight,
+                painter = painterResource(Res.drawable.ic_play),
+                contentDescription = "Play",
                 modifier = Modifier
-                    .height(Dimens.GameBoxHeight)
-                    .width(Dimens.GameBoxWidth)
+                    .width(32.dp)
+                    .height(32.dp)
+                    .clickable { onRunGameButtonClick(game) }
             )
-        }
 
-        Box(
-            modifier = Modifier
-                .width(Dimens.GameBoxWidth),
-            contentAlignment = Alignment.Center,
-        ) {
-            Row(
-                horizontalArrangement = Arrangement.SpaceEvenly,
-                verticalAlignment = Alignment.CenterVertically,
+            Spacer(Modifier.width(Dimens.PaddingStandard))
+
+            val completionButton =
+                if (game.completed) Res.drawable.ic_checked else Res.drawable.ic_unchecked
+
+            Image(
+                painter = painterResource(completionButton),
+                contentDescription = "Completion",
                 modifier = Modifier
-                    .background(Yellow)
-                    .width(Dimens.GameBoxWidth)
-                    .padding(Dimens.PaddingSmall),
-            ) {
-
-                Image(
-                    painter = painterResource(Res.drawable.ic_gog),
-                    contentDescription = "GOG",
-                    modifier = Modifier
-                        .width(32.dp)
-                        .height(32.dp)
-                        .clickable { onGameUrlClick(game) }
-                )
-
-                Image(
-                    painter = painterResource(Res.drawable.ic_play),
-                    contentDescription = "Play",
-                    modifier = Modifier
-                        .width(32.dp)
-                        .height(32.dp)
-                        .clickable { onRunGameButtonClick(game) }
-                )
-
-                val completionButton =
-                    if (game.completed) Res.drawable.ic_checked else Res.drawable.ic_unchecked
-
-                Image(
-                    painter = painterResource(completionButton),
-                    contentDescription = "Completion",
-                    modifier = Modifier
-                        .width(32.dp)
-                        .height(32.dp)
-                        .clickable { onToggleCompletionButtonClick(game) }
-                )
-            }
+                    .width(32.dp)
+                    .height(32.dp)
+                    .clickable { onToggleCompletionButtonClick(game) }
+            )
         }
     }
 }
