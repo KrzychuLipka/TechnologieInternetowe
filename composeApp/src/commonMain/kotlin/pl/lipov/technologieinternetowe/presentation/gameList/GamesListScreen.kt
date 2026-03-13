@@ -69,10 +69,7 @@ fun GamesListScreen(
 
             LazyVerticalGrid(
                 columns = GridCells.Adaptive(minSize = Dimens.GameBoxWidth),
-                modifier = modifier.padding(padding),
-//                contentPadding = PaddingValues(Dimens.PaddingMedium),
-//                horizontalArrangement = Arrangement.spacedBy(Dimens.PaddingMedium),
-//                verticalArrangement = Arrangement.spacedBy(20.dp)
+                modifier = modifier.padding(padding)
             ) {
                 items(gamesState.value) { game ->
                     GameItem(
