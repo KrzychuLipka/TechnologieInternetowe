@@ -1,12 +1,13 @@
 package pl.lipov.technologieinternetowe.presentation.gameList
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -18,7 +19,10 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
 import org.jetbrains.compose.resources.painterResource
 import pl.lipov.technologieinternetowe.domain.model.Game
+import pl.lipov.technologieinternetowe.presentation.theme.DarkYellow
 import pl.lipov.technologieinternetowe.presentation.theme.Dimens
+import pl.lipov.technologieinternetowe.presentation.theme.GameBoxSize
+import pl.lipov.technologieinternetowe.presentation.theme.Yellow
 import technologieinternetowe.composeapp.generated.resources.Res
 import technologieinternetowe.composeapp.generated.resources.crusader_no_remorse
 import technologieinternetowe.composeapp.generated.resources.dino_crisis_2
@@ -92,24 +96,33 @@ fun GameItem(
 ) {
     val gameBoxRes = gameBoxes.getOrElse(game.id) { Res.drawable.doom }
 
-    Column(
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.SpaceBetween, // żeby obrazek i przyciski się rozłożyły
-        modifier = modifier
-            .fillMaxHeight()
-            .padding(Dimens.PaddingSmall)
-    ) {
+    Column(modifier) {
+        Box {
+            Spacer(
+                modifier = Modifier
+                    .background(Yellow)
+                    .fillMaxWidth()
+                    .height(Dimens.ShelfDepth)
+                    .align(Alignment.BottomCenter)
+            )
 
-        Image(
-            painter = painterResource(gameBoxRes),
-            contentDescription = game.title,
-            contentScale = ContentScale.FillHeight,
-            modifier = Modifier.weight(1f)
-        )
+            Image(
+                painter = painterResource(gameBoxRes),
+                contentDescription = game.title,
+                Modifier
+                    .align(Alignment.BottomCenter)
+                    .height(GameBoxSize),
+                contentScale = ContentScale.FillHeight
+            )
+        }
 
         Row(
             verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier.padding(Dimens.PaddingSmall),
+            horizontalArrangement = Arrangement.Center,
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(DarkYellow)
+                .padding(Dimens.PaddingSmall),
         ) {
             Image(
                 painter = painterResource(Res.drawable.ic_gog),
@@ -126,6 +139,7 @@ fun GameItem(
                 painter = painterResource(Res.drawable.ic_play),
                 contentDescription = "Play",
                 modifier = Modifier
+                    .padding(horizontal = Dimens.PaddingStandard)
                     .width(32.dp)
                     .height(32.dp)
                     .clickable { onRunGameButtonClick(game) }
