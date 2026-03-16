@@ -84,7 +84,7 @@ fun GamesListScreen(
                     items(gamesState.value) { game ->
                         GameItem(
                             game = game,
-                            onGameUrlClick = { viewModel.handleGameUrlClick(it.gogUrl) },
+                            onGameUrlClick = { viewModel.handleGameUrlClick(it) },
                             onRunGameButtonClick = { viewModel.handleRunGameButtonClick(it.id) },
                             onToggleCompletionButtonClick = {
                                 viewModel.handleToggleGameCompletionButtonClick(
