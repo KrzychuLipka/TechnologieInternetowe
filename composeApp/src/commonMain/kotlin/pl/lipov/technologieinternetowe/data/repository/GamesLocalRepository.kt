@@ -21,4 +21,7 @@ class GamesLocalRepository : GamesRepository {
     ) {
         GamesLocalDataSource.toggleGameCompletion(gameId)
     }
+
+    override suspend fun refresh() {
+    }
 }

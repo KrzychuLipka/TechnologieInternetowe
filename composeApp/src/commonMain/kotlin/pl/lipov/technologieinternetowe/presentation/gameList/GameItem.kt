@@ -91,7 +91,8 @@ private val gameBoxes = mapOf(
     "lew_leon" to Res.drawable.lew_leon,
     "fire_fight" to Res.drawable.fire_fight,
     "skaut" to Res.drawable.skaut,
-    "kao" to Res.drawable.kao
+    "kao" to Res.drawable.kao,
+    "quake" to Res.drawable.quake
 )
 
 @Composable

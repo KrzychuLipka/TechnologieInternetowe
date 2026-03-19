@@ -13,7 +13,7 @@ object Dimens {
 
     val FontLarge = 28.sp
     val FontMedium =28.sp
-    val GameBoxSize = 200.dp
+    val GameBoxSize = 400.dp
 }
 
 expect val GameBoxSize: Dp

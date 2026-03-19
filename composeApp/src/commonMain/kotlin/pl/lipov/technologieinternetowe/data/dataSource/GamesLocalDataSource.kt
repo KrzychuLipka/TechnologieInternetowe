@@ -52,9 +52,6 @@ object GamesLocalDataSource {
                 gameUrl = "https://www.gog.com/pl/game/doom_doom_ii",
                 magazineNumber = 2,
                 lastPlayed = 2026,
-                additionalGames = listOf(
-                    "DOOM II + dodatki"
-                ),
                 platform = Platform.GOG,
                 playable = true
             ),
@@ -195,9 +192,6 @@ object GamesLocalDataSource {
                 gameUrl = "https://www.gog.com/pl/game/jazz_jackrabbit_2_collection",
                 magazineNumber = 2,
                 lastPlayed = 2008,
-                additionalGames = listOf(
-                    "Jazz Jackrabbit 2: The Christmass Chronicles"
-                ),
                 platform = Platform.GOG,
                 playable = true
             ),
@@ -226,10 +220,6 @@ object GamesLocalDataSource {
                 magazineNumber = 2,
                 lastPlayed = 2026,
                 completed = true,
-                additionalGames = listOf(
-                    "Moto Racer 2",
-                    "Moto Racer 3"
-                ),
                 platform = Platform.GOG,
                 playable = true
             ),
@@ -325,9 +315,6 @@ object GamesLocalDataSource {
                 gameUrl = "https://www.gog.com/pl/game/the_witcher",
                 magazineNumber = 4,
                 lastPlayed = 2025,
-                additionalGames = listOf(
-                    "Wiedźmin 3"
-                ),
                 platform = Platform.GOG
             ),
             Game(
@@ -441,10 +428,6 @@ object GamesLocalDataSource {
                 gameUrl = "https://www.gog.com/pl/game/mortal_kombat_123",
                 magazineNumber = 6,
                 lastPlayed = 2026,
-                additionalGames = listOf(
-                    "Mortal Kombat 2",
-                    "Mortal Kombat 3"
-                ),
                 platform = Platform.GOG,
                 playable = true
             ),
@@ -565,9 +548,6 @@ object GamesLocalDataSource {
                 completed = true,
                 platform = Platform.GOG,
                 playable = true,
-                additionalGames = listOf(
-                    "Lew Leon"
-                )
             ),
             Game(
                 id = "kao",
@@ -593,9 +573,6 @@ object GamesLocalDataSource {
                 gameUrl = "https://www.gog.com/pl/game/dino_crisis_2",
                 magazineNumber = 9,
                 lastPlayed = 2004,
-                additionalGames = listOf(
-                    "Dino Crisis"
-                ),
                 platform = Platform.GOG,
                 playable = true
             )
