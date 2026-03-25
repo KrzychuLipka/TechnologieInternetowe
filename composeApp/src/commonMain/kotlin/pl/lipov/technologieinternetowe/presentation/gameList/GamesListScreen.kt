@@ -2,7 +2,6 @@ package pl.lipov.technologieinternetowe.presentation.gameList
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -27,11 +26,12 @@ import pl.lipov.technologieinternetowe.presentation.theme.DarkYellow
 import pl.lipov.technologieinternetowe.presentation.theme.Dimens
 import pl.lipov.technologieinternetowe.presentation.theme.GameBoxSize
 
+private const val MAGAZINE_NUMBER = 9
+
 @Composable
 fun GamesListScreen(
     modifier: Modifier = Modifier,
-    magazineNumber: Int,
-    onBack: () -> Unit
+    magazineNumber: Int = MAGAZINE_NUMBER
 ) {
     val viewModel: GamesListViewModel = viewModel { GamesListViewModel() }
 
@@ -46,7 +46,6 @@ fun GamesListScreen(
                 .graphicsLayer { alpha = 0.5f },
             contentScale = ContentScale.Crop
         )
-
         Column(
             modifier = Modifier.fillMaxSize()
         ) {
@@ -56,24 +55,12 @@ fun GamesListScreen(
                     .fillMaxWidth(),
             ) {
                 Text(
-                    "Powrót",
-                    color = Color.Red,
-                    modifier = Modifier
-                        .padding(Dimens.PaddingSmall)
-                        .clickable {
-                            onBack()
-                        }
-                )
-
-                Text(
-                    "Retro #$magazineNumber",
+                    "CD Action Retro",
                     color = DarkYellow,
                     modifier = Modifier.padding(Dimens.PaddingSmall)
                 )
             }
-
             val gamesState = viewModel.getAllGames(magazineNumber).collectAsState()
-
             Box(
                 modifier = Modifier.fillMaxSize(),
                 contentAlignment = Alignment.Center

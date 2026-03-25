@@ -8,5 +8,6 @@ enum class Platform {
     DOS,
     WIN95,
     GOG,
-    STEAM
+    STEAM,
+    BATTLE_NET
 }

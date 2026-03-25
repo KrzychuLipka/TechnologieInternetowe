@@ -7,7 +7,6 @@ import pl.lipov.technologieinternetowe.domain.model.Platform
 data class GameDto(
     val id: String,
     val title: String,
-    val magazineNumber: Int,
     val platform: Platform,
     val gameUrl: String? = null,
     val playable: Boolean = false
