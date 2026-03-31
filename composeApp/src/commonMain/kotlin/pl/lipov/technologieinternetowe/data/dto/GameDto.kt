@@ -9,5 +9,6 @@ data class GameDto(
     val title: String,
     val platform: Platform,
     val gameUrl: String? = null,
-    val playable: Boolean = false
+    val playable: Boolean = false,
+    val completed: Boolean = false
 )

@@ -12,9 +12,6 @@ import kotlinx.serialization.json.Json
 
 actual object HttpClientProvider {
 
-    private const val HOST = "192.168.0.61"
-    private const val PORT = 8080
-
     actual val httpClient = HttpClient(OkHttp) {
         install(ContentNegotiation) {
             json(Json { ignoreUnknownKeys = true })

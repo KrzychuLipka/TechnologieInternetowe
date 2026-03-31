@@ -19,9 +19,25 @@ class GamesRemoteRepository : GamesRepository {
             list.filter { it.magazineNumber == magazineNumber }
         }
 
-    override suspend fun toggleGameCompletion(gameId: String) {
+    override suspend fun toggleGameCompletion(
+        gameId: String
+    ) {
+        val game = _games.value.find { it.id == gameId } ?: return
+        val newCompletedValue = !game.completed
+
+        try {
+            GamesRemoteDataSource.toggleGameCompletedStatus(
+                gameId = gameId,
+                completed = newCompletedValue
+            )
+        } catch (exception: Exception) {
+            // TODO: obsługa błędów (np. pokazanie komunikatu)
+            println(exception.message)
+            return
+        }
+
         _games.value = _games.value.map { game ->
-            if (game.id == gameId) game.copy(completed = !game.completed)
+            if (game.id == gameId) game.copy(completed = newCompletedValue)
             else game
         }
     }

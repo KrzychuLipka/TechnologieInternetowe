@@ -11,5 +11,6 @@ fun GameDto.toGame() = Game(
     magazineNumber = MAGAZINE_NUMBER,
     platform = platform,
     gameUrl = gameUrl,
-    playable = playable
+    playable = playable,
+    completed = completed
 )

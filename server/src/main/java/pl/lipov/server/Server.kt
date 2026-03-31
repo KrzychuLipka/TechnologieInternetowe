@@ -1,9 +1,11 @@
 package pl.lipov.server
 
 import io.ktor.http.HttpMethod
+import io.ktor.http.HttpStatusCode
 import io.ktor.serialization.kotlinx.json.json
 import io.ktor.server.application.install
 import io.ktor.server.engine.embeddedServer
+import io.ktor.server.http.content.staticFiles
 import io.ktor.server.netty.Netty
 import io.ktor.server.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.server.plugins.cors.routing.CORS
@@ -11,6 +13,7 @@ import io.ktor.server.request.receive
 import io.ktor.server.response.respond
 import io.ktor.server.routing.delete
 import io.ktor.server.routing.get
+import io.ktor.server.routing.patch
 import io.ktor.server.routing.post
 import io.ktor.server.routing.put
 import io.ktor.server.routing.routing
@@ -23,6 +26,8 @@ import org.jetbrains.exposed.v1.jdbc.insert
 import org.jetbrains.exposed.v1.jdbc.selectAll
 import org.jetbrains.exposed.v1.jdbc.transactions.transaction
 import org.jetbrains.exposed.v1.jdbc.update
+import java.io.File
+
 
 fun main() {
 
@@ -47,13 +52,14 @@ fun main() {
 
         routing {
 
+            staticFiles("/images", File("D:/roms/boxes"))
+
             get("/games") {
                 val result = transaction {
                     Games.selectAll().map {
                         Game(
                             id = it[Games.id],
                             title = it[Games.title],
-                            gameUrl = it[Games.gameUrl],
                             platform = it[Games.platform],
                             playable = it[Games.playable],
                             completed = it[Games.completed]
@@ -79,7 +85,6 @@ fun main() {
                             Game(
                                 id = it[Games.id],
                                 title = it[Games.title],
-                                gameUrl = it[Games.gameUrl],
                                 platform = it[Games.platform],
                                 playable = it[Games.playable],
                                 completed = it[Games.completed]
@@ -87,8 +92,11 @@ fun main() {
                         }
                 }
 
-                if (game == null) call.respond("Not found")
-                else call.respond(game)
+                if (game == null) {
+                    call.respond(HttpStatusCode.NotFound)
+                } else {
+                    call.respond(game)
+                }
             }
 
             post("/games") {
@@ -98,7 +106,6 @@ fun main() {
                     Games.insert {
                         it[id] = newGame.id
                         it[title] = newGame.title
-                        it[gameUrl] = newGame.gameUrl
                         it[platform] = newGame.platform
                         it[playable] = newGame.playable
                         it[completed] = newGame.completed
@@ -120,7 +127,6 @@ fun main() {
                 transaction {
                     Games.update({ Games.id eq id }) {
                         it[title] = updated.title
-                        it[gameUrl] = updated.gameUrl
                         it[platform] = updated.platform
                         it[playable] = updated.playable
                         it[completed] = updated.completed
@@ -129,11 +135,32 @@ fun main() {
 
                 call.respond("Game updated")
             }
+            patch("/games/{id}/completed") {
+                val id = call.parameters["id"]
+                if (id.isNullOrBlank()) {
+                    call.respond(HttpStatusCode.BadRequest, "Missing ID")
+                    return@patch
+                }
+
+                val requestBody = call.receive<CompletedUpdateRequest>()
+
+                val updatedRows = transaction {
+                    Games.update({ Games.id eq id }) {
+                        it[completed] = requestBody.completed
+                    }
+                }
+
+                if (updatedRows == 0) {
+                    call.respond(HttpStatusCode.NotFound)
+                } else {
+                    call.respond("Completed flag updated")
+                }
+            }
 
             delete("/games/{id}") {
                 val id = call.parameters["id"]
                 if (id.isNullOrBlank()) {
-                    call.respond("Invalid ID")
+                    call.respond(HttpStatusCode.BadRequest, "Missing ID")
                     return@delete
                 }
 
@@ -160,7 +187,6 @@ private fun initDatabase() {
                 Games.insert {
                     it[id] = game.id
                     it[title] = game.title
-                    it[gameUrl] = game.gameUrl
                     it[platform] = game.platform
                     it[playable] = game.playable
                     it[completed] = game.completed

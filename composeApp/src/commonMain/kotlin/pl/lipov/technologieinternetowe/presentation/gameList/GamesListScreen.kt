@@ -21,10 +21,11 @@ import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
 import androidx.lifecycle.viewmodel.compose.viewModel
 import org.jetbrains.compose.resources.painterResource
-import pl.lipov.technologieinternetowe.common.ui.MagazineUtils
 import pl.lipov.technologieinternetowe.presentation.theme.DarkYellow
 import pl.lipov.technologieinternetowe.presentation.theme.Dimens
 import pl.lipov.technologieinternetowe.presentation.theme.GameBoxSize
+import technologieinternetowe.composeapp.generated.resources.Res
+import technologieinternetowe.composeapp.generated.resources.retro9
 
 private const val MAGAZINE_NUMBER = 9
 
@@ -39,7 +40,7 @@ fun GamesListScreen(
         modifier = modifier
     ) {
         Image(
-            painter = painterResource(MagazineUtils.getMagazineImage(magazineNumber)),
+            painter = painterResource(Res.drawable.retro9),
             contentDescription = null,
             modifier = Modifier
                 .fillMaxSize()

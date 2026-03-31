@@ -3,8 +3,8 @@ package pl.lipov.server
 object GamesRepository {
 
     val games = listOf(
-        Game("river_raid", "River Raid (1982)", platform = Platform.ATARI, playable = true),
-        Game("boulder_dash", "Boulder Dash (1984)", platform = Platform.ATARI, playable = true),
+        Game("river_raid", "River Raid (1982)", platform = Platform.ATARI),
+        Game("boulder_dash", "Boulder Dash (1984)", platform = Platform.ATARI),
         Game(
             "commander_keen_complete_pack", "Commander Keen (1990)",
             gameUrl = "https://www.gog.com/pl/game/commander_keen_complete_pack",
@@ -13,12 +13,12 @@ object GamesRepository {
 
         Game(
             "miecze_valdgira", "Miecze Valdgira (1991)",
-            platform = Platform.ATARI, playable = true, completed = true
+            platform = Platform.ATARI, completed = true
         ),
 
         Game(
             "james_pond_2", "James Pond 2 (1991)",
-            platform = Platform.AMIGA, playable = true
+            platform = Platform.AMIGA
         ),
 
         Game(
@@ -37,7 +37,7 @@ object GamesRepository {
             "indiana_jones_and_the_fate_of_atlantis",
             "Indiana Jones and the Fate of Atlantis (1992)",
             gameUrl = "https://store.steampowered.com/app/6010/Indiana_Jones_and_the_Fate_of_Atlantis",
-            platform = Platform.STEAM, completed = true
+            platform = Platform.STEAM
         ),
 
         Game(
@@ -48,22 +48,22 @@ object GamesRepository {
 
         Game(
             "lionheart", "Lionheart (1993)",
-            platform = Platform.AMIGA, playable = true
+            platform = Platform.AMIGA
         ),
 
         Game(
             "superfrog", "Superfrog (1993)",
-            platform = Platform.AMIGA, playable = true, completed = true
+            platform = Platform.AMIGA, completed = true
         ),
 
         Game(
             "traps_treasures", "Traps 'n' Treasures (1993)",
-            platform = Platform.AMIGA, playable = true
+            platform = Platform.AMIGA
         ),
 
         Game(
             "qwak", "Qwak (1993)",
-            platform = Platform.AMIGA, playable = true
+            platform = Platform.AMIGA
         ),
 
         Game(
@@ -80,23 +80,23 @@ object GamesRepository {
 
         Game(
             "ruff_tumble", "Ruff 'n' Tumble (1994)",
-            platform = Platform.AMIGA, playable = true
+            platform = Platform.AMIGA
         ),
 
         Game(
             "zool_2", "Zool 2 (1994)",
-            platform = Platform.AMIGA, playable = true
+            platform = Platform.AMIGA
         ),
 
         Game(
             "franko", "Franko: The Crazy Revenge (1994)",
-            platform = Platform.DOS, playable = true
+            platform = Platform.DOS
         ),
 
         Game(
             "beneath_a_steel_sky", "Beneath a Steel Sky (1994)",
             gameUrl = "https://www.gog.com/pl/game/beneath_a_steel_sky",
-            platform = Platform.GOG, playable = true, completed = true
+            platform = Platform.GOG, completed = true
         ),
 
         Game(
@@ -144,17 +144,17 @@ object GamesRepository {
         Game(
             "donkey_kong_country_2",
             "Donkey Kong Country 2: Diddy's Kong Quest (1995)",
-            platform = Platform.SNES, playable = true
+            platform = Platform.SNES
         ),
 
         Game(
             "fire_fight", "Fire Fight (1996)",
-            platform = Platform.WIN95, playable = true
+            platform = Platform.WIN95
         ),
 
         Game(
             "skaut", "Skaut Kwatemaster (1996)",
-            platform = Platform.WIN95, playable = true
+            platform = Platform.WIN95
         ),
 
         Game(
@@ -195,12 +195,12 @@ object GamesRepository {
 
         Game(
             "colin", "Colin McRae Rally (1998)",
-            platform = Platform.WIN95, playable = true
+            platform = Platform.WIN95
         ),
 
         Game(
             "nfs3", "Need for Speed III: Hot Pursuit (1998)",
-            platform = Platform.WIN95, playable = true
+            platform = Platform.WIN95
         ),
 
         Game(
@@ -304,7 +304,7 @@ object GamesRepository {
 
         Game(
             "tony", "Tony: Montezuma’s Gold (2024)",
-            platform = Platform.ATARI, playable = true
+            platform = Platform.ATARI
         ),
 
         Game(
