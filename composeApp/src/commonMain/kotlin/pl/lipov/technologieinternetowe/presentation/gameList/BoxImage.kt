@@ -5,8 +5,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import com.seiko.imageloader.rememberImagePainter
-import pl.lipov.technologieinternetowe.data.dataSource.HOST
-import pl.lipov.technologieinternetowe.data.dataSource.PORT
 import pl.lipov.technologieinternetowe.domain.model.Game
 
 @Composable
@@ -15,7 +13,7 @@ fun BoxImage(
     game: Game,
     contentScale: ContentScale = ContentScale.FillHeight
 ) {
-    val imageUrl = "http://$HOST:$PORT/images/${game.id}.png"
+    val imageUrl = "TODO/${game.id}.png"
     val painter = rememberImagePainter(imageUrl)
     Image(
         modifier = modifier,

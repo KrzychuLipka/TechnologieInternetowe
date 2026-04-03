@@ -15,7 +15,6 @@ import io.ktor.server.routing.delete
 import io.ktor.server.routing.get
 import io.ktor.server.routing.patch
 import io.ktor.server.routing.post
-import io.ktor.server.routing.put
 import io.ktor.server.routing.routing
 import kotlinx.serialization.json.Json
 import org.jetbrains.exposed.v1.core.eq
@@ -39,6 +38,7 @@ fun main() {
             json(Json {
                 prettyPrint = true
                 isLenient = true
+                encodeDefaults = true
             })
         }
 
@@ -114,49 +114,23 @@ fun main() {
 
                 call.respond("Game added")
             }
-
-            put("/games/{id}") {
-                val id = call.parameters["id"]
-                if (id.isNullOrBlank()) {
-                    call.respond("Invalid ID")
-                    return@put
-                }
-
-                val updated = call.receive<Game>()
-
-                transaction {
-                    Games.update({ Games.id eq id }) {
-                        it[title] = updated.title
-                        it[platform] = updated.platform
-                        it[playable] = updated.playable
-                        it[completed] = updated.completed
-                    }
-                }
-
-                call.respond("Game updated")
-            }
-            patch("/games/{id}/completed") {
+            patch("/games/{id}") {
                 val id = call.parameters["id"]
                 if (id.isNullOrBlank()) {
                     call.respond(HttpStatusCode.BadRequest, "Missing ID")
                     return@patch
                 }
-
-                val requestBody = call.receive<CompletedUpdateRequest>()
-
-                val updatedRows = transaction {
+                val game = call.receive<GameUpdateRequest>()
+                transaction {
                     Games.update({ Games.id eq id }) {
-                        it[completed] = requestBody.completed
+                        game.title?.let { t -> it[title] = t }
+                        game.platform?.let { p -> it[platform] = p }
+                        game.playable?.let { pl -> it[playable] = pl }
+                        game.completed?.let { c -> it[completed] = c }
                     }
                 }
-
-                if (updatedRows == 0) {
-                    call.respond(HttpStatusCode.NotFound)
-                } else {
-                    call.respond("Completed flag updated")
-                }
+                call.respond("Game updated")
             }
-
             delete("/games/{id}") {
                 val id = call.parameters["id"]
                 if (id.isNullOrBlank()) {

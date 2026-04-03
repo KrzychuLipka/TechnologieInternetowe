@@ -1,4 +1,7 @@
-package pl.lipov.server
+package pl.lipov.technologieinternetowe.data.dataSource
+
+import pl.lipov.technologieinternetowe.domain.model.Game
+import pl.lipov.technologieinternetowe.domain.model.Platform
 
 object GamesRepository {
 

@@ -1,5 +1,8 @@
 package pl.lipov.server
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 enum class Platform {
     ATARI,
     AMIGA,
