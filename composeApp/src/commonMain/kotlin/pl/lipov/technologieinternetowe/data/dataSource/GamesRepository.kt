@@ -86,7 +86,8 @@ object GamesRepository {
             "Screamer (1995)",
             gameUrl = "https://www.gog.com/pl/game/screamer",
             platform = Platform.GOG,
-            playable = true
+            playable = true,
+            completed = true
         ),
 
         Game(
@@ -235,7 +236,8 @@ object GamesRepository {
             "Dino Crisis 2",
             gameUrl = "https://www.gog.com/pl/game/dino_crisis_2",
             platform = Platform.GOG,
-            playable = true
+            playable = true,
+            completed = true
         ),
 
         Game(
@@ -306,7 +308,8 @@ object GamesRepository {
             "Ski Jumping World Cup (2025)",
             gameUrl = "https://www.gog.com/pl/game/ski_jumping_world_cup",
             platform = Platform.GOG,
-            playable = true
+            playable = true,
+            completed = true
         )
     )
 }

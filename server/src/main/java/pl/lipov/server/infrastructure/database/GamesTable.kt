@@ -1,8 +1,9 @@
-package pl.lipov.server
+package pl.lipov.server.infrastructure.database
 
 import org.jetbrains.exposed.v1.core.Table
+import pl.lipov.server.domain.model.Platform
 
-object Games : Table() {
+object GamesTable : Table() {
 
     val id = varchar("id", 255)
     val title = varchar("title", 255)

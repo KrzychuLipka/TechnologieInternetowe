@@ -1,8 +1,5 @@
-package pl.lipov.server
+package pl.lipov.server.domain.model
 
-import kotlinx.serialization.Serializable
-
-@Serializable
 data class Game(
     val id: String,
     val title: String,
