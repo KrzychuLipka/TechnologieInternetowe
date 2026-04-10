@@ -8,6 +8,7 @@ data class GameResponse(
     val id: String,
     val title: String,
     val platform: Platform,
+    val gameUrl: String,
     val playable: Boolean,
     val completed: Boolean
 )
