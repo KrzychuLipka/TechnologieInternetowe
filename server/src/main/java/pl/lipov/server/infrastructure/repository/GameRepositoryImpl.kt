@@ -18,11 +18,10 @@ class GameRepositoryImpl : GameRepository {
     override fun updateGameCompletedStatus(
         id: String,
         completed: Boolean
-    ) {
-        transaction {
-            GamesTable.update({ GamesTable.id eq id }) {
-                it[GamesTable.completed] = completed
-            }
+    ): Boolean = transaction {
+        val updatedRows = GamesTable.update({ GamesTable.id eq id }) {
+            it[GamesTable.completed] = completed
         }
+        updatedRows > 0
     }
 }

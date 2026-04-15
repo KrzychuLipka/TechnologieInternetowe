@@ -1,5 +1,6 @@
 package pl.lipov.technologieinternetowe.domain.useCase
 
+import pl.lipov.technologieinternetowe.domain.model.ApiResult
 import pl.lipov.technologieinternetowe.domain.repository.GamesRepository
 
 class ToggleGameCompletionStateUseCase(
@@ -8,7 +9,5 @@ class ToggleGameCompletionStateUseCase(
 
     suspend operator fun invoke(
         gameId: String
-    ) {
-        repository.toggleGameCompletion(gameId)
-    }
+    ): ApiResult<Unit> = repository.toggleGameCompletion(gameId)
 }

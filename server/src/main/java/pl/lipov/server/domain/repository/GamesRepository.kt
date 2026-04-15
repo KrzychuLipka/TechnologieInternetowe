@@ -4,5 +4,5 @@ import pl.lipov.server.domain.model.Game
 
 interface GameRepository {
     fun getAll(): List<Game>
-    fun updateGameCompletedStatus(id: String, completed: Boolean)
+    fun updateGameCompletedStatus(id: String, completed: Boolean): Boolean
 }

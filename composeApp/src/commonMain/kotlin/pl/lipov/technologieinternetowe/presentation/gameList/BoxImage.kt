@@ -21,9 +21,9 @@ fun BoxImage(
     contentScale: ContentScale = ContentScale.FillHeight
 ) {
     val lowerCaseUrl =
-        "https://raw.githubusercontent.com/KrzychuLipka/TechnologieInternetowe/week8/boxes/${game.id}.png"
+        "https://raw.githubusercontent.com/KrzychuLipka/TechnologieInternetowe/feature/week8/boxes/${game.id}.png"
     val upperCaseUrl =
-        "https://raw.githubusercontent.com/KrzychuLipka/TechnologieInternetowe/week8/boxes/${game.id}.PNG"
+        "https://raw.githubusercontent.com/KrzychuLipka/TechnologieInternetowe/feature/week8/boxes/${game.id}.PNG"
 
     var useUpperCase by remember { mutableStateOf(false) }
 

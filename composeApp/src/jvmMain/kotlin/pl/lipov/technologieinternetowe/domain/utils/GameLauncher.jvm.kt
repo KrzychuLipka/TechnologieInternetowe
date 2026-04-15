@@ -9,12 +9,12 @@ import java.net.URI
 
 
 private const val GAME_FILE_EXTENSION = ".exe"
-private const val GAME_DIR = "D:/roms"
+private const val GOG_GAMES_DIR = "D:/roms/gog"
 
 actual suspend fun runGame(
     gameId: String
 ): Result<Unit> = withContext(Dispatchers.IO) {
-    val gameFile = File("$GAME_DIR/$gameId$GAME_FILE_EXTENSION")
+    val gameFile = File("$GOG_GAMES_DIR/$gameId$GAME_FILE_EXTENSION")
 
     if (!gameFile.exists()) {
         return@withContext Result.failure(

@@ -6,8 +6,8 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
-import pl.lipov.technologieinternetowe.data.repository.GamesLocalRepository
 import pl.lipov.technologieinternetowe.data.repository.GamesRemoteRepository
+import pl.lipov.technologieinternetowe.domain.model.ApiResult
 import pl.lipov.technologieinternetowe.domain.model.Game
 import pl.lipov.technologieinternetowe.domain.useCase.GetAllGamesUseCase
 import pl.lipov.technologieinternetowe.domain.useCase.RefreshGamesUseCase
@@ -35,7 +35,16 @@ class GamesListViewModel : ViewModel() {
 
     init {
         viewModelScope.launch {
-            refreshGamesUseCase()
+            when (refreshGamesUseCase()) {
+                is ApiResult.Success -> { /* OK */
+                }
+
+                is ApiResult.Error -> { /* pokaż error */
+                }
+
+                is ApiResult.NetworkError -> { /* brak neta */
+                }
+            }
         }
     }
 
@@ -67,7 +76,16 @@ class GamesListViewModel : ViewModel() {
         gameId: String
     ) {
         viewModelScope.launch {
-            toggleGameCompletionStateUseCase(gameId)
+            when (val result = toggleGameCompletionStateUseCase(gameId)) {
+                is ApiResult.Success -> { /* OK */
+                }
+
+                is ApiResult.Error -> { /* pokaż error */
+                }
+
+                is ApiResult.NetworkError -> { /* brak neta */
+                }
+            }
         }
     }
 }
