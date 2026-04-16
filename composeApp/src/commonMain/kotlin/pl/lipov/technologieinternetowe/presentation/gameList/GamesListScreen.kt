@@ -21,6 +21,7 @@ import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
 import androidx.lifecycle.viewmodel.compose.viewModel
 import org.jetbrains.compose.resources.painterResource
+import pl.lipov.technologieinternetowe.presentation.UiMessenger
 import pl.lipov.technologieinternetowe.presentation.theme.DarkYellow
 import pl.lipov.technologieinternetowe.presentation.theme.Dimens
 import pl.lipov.technologieinternetowe.presentation.theme.GameBoxSize
@@ -31,10 +32,11 @@ private const val MAGAZINE_NUMBER = 9
 
 @Composable
 fun GamesListScreen(
+    uiMessenger: UiMessenger,
     modifier: Modifier = Modifier,
     magazineNumber: Int = MAGAZINE_NUMBER
 ) {
-    val viewModel: GamesListViewModel = viewModel { GamesListViewModel() }
+    val viewModel: GamesListViewModel = viewModel { GamesListViewModel(uiMessenger) }
 
     Box(
         modifier = modifier
@@ -76,7 +78,7 @@ fun GamesListScreen(
                             onRunGameButtonClick = { viewModel.handleRunGameButtonClick(it.id) },
                             onToggleCompletionButtonClick = {
                                 viewModel.handleToggleGameCompletionButtonClick(
-                                    it.id
+                                    "invalid_id"// TODO it.id
                                 )
                             }
                         )

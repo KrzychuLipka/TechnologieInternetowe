@@ -13,31 +13,31 @@ import pl.lipov.server.domain.error.ValidationException
 fun Application.configureErrorHandling() {
     install(StatusPages) {
 
-        exception<Throwable> { call, cause ->
-            call.respond(
-                HttpStatusCode.InternalServerError,
-                ErrorResponse("INTERNAL_ERROR", cause.message ?: "Unknown error")
-            )
-        }
-
-        exception<NotFoundException> { call, cause ->
+        exception<NotFoundException> { call, _ ->
             call.respond(
                 HttpStatusCode.NotFound,
-                ErrorResponse("NOT_FOUND", cause.message ?: "Resource not found")
+                ErrorResponse("GAME_NOT_FOUND")
             )
         }
 
-        exception<BadRequestException> { call, cause ->
+        exception<BadRequestException> { call, _ ->
             call.respond(
                 HttpStatusCode.BadRequest,
-                ErrorResponse("BAD_REQUEST", cause.message ?: "Invalid request")
+                ErrorResponse("BAD_REQUEST")
             )
         }
 
-        exception<ValidationException> { call, cause ->
+        exception<ValidationException> { call, _ ->
             call.respond(
                 HttpStatusCode.UnprocessableEntity,
-                ErrorResponse("VALIDATION_ERROR", cause.message ?: "Validation failed")
+                ErrorResponse("VALIDATION_ERROR")
+            )
+        }
+
+        exception<Throwable> { call, _ ->
+            call.respond(
+                HttpStatusCode.InternalServerError,
+                ErrorResponse("INTERNAL_ERROR")
             )
         }
     }

@@ -14,8 +14,12 @@ import pl.lipov.technologieinternetowe.domain.useCase.RefreshGamesUseCase
 import pl.lipov.technologieinternetowe.domain.useCase.ToggleGameCompletionStateUseCase
 import pl.lipov.technologieinternetowe.domain.utils.openGameUrl
 import pl.lipov.technologieinternetowe.domain.utils.runGame
+import pl.lipov.technologieinternetowe.presentation.UiEvent
+import pl.lipov.technologieinternetowe.presentation.UiMessenger
 
-class GamesListViewModel : ViewModel() {
+class GamesListViewModel(
+    private val uiMessenger: UiMessenger
+) : ViewModel() {
 
     companion object {
         private const val STOP_SUBSCRIPTION_TIMEOUT_MS = 5_000L
@@ -26,25 +30,43 @@ class GamesListViewModel : ViewModel() {
     private val getAllGamesUseCase = GetAllGamesUseCase(
         repository = repository
     )
-    private val toggleGameCompletionStateUseCase = ToggleGameCompletionStateUseCase(
+    private val toggleGameCompletionState = ToggleGameCompletionStateUseCase(
         repository = repository
     )
-    private val refreshGamesUseCase = RefreshGamesUseCase(
+    private val refreshGames = RefreshGamesUseCase(
         repository = repository
     )
 
     init {
         viewModelScope.launch {
-            when (refreshGamesUseCase()) {
-                is ApiResult.Success -> { /* OK */
-                }
+            refreshGames().handle()
+        }
+    }
 
-                is ApiResult.Error -> { /* pokaż error */
-                }
+    private fun <T> ApiResult<T>.handle(
+        onSuccess: (T) -> Unit = {}
+    ) {
+        when (this) {
+            is ApiResult.Success -> onSuccess(data)
 
-                is ApiResult.NetworkError -> { /* brak neta */
+            is ApiResult.Error -> {
+                viewModelScope.launch {
+                    uiMessenger.sendUiEvent(
+                        UiEvent.ShowMessage(mapError(code))
+                    )
                 }
             }
+        }
+    }
+
+    private fun mapError(
+        code: String?
+    ): String {
+        return when (code) {
+            "GAME_NOT_FOUND" -> "Nie znaleziono gry"
+            "VALIDATION_ERROR" -> "Błędne dane"
+            "BAD_REQUEST" -> "Niepoprawne żądanie"
+            else -> "Coś poszło nie tak: $code"
         }
     }
 
@@ -76,16 +98,7 @@ class GamesListViewModel : ViewModel() {
         gameId: String
     ) {
         viewModelScope.launch {
-            when (val result = toggleGameCompletionStateUseCase(gameId)) {
-                is ApiResult.Success -> { /* OK */
-                }
-
-                is ApiResult.Error -> { /* pokaż error */
-                }
-
-                is ApiResult.NetworkError -> { /* brak neta */
-                }
-            }
+            toggleGameCompletionState(gameId).handle()
         }
     }
 }
