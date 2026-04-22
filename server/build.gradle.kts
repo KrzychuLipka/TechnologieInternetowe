@@ -21,10 +21,6 @@ dependencies {
     implementation(libs.ktor.serialization.kotlinx.json.jvm)
     implementation(libs.ktor.server.cors)
     implementation(libs.ktor.server.status.pages)
-    implementation(libs.exposed.core)
-    implementation(libs.exposed.jdbc)
-    implementation(libs.sqlite.jdbc)
-
 }
 
 application {

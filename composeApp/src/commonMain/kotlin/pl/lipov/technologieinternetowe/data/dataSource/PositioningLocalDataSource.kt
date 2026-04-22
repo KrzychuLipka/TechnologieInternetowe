@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import pl.lipov.technologieinternetowe.domain.model.Game
 
-object GamesLocalDataSource {
+object PositioningLocalDataSource {
 
     private var _games = MutableStateFlow(GamesRepository.games)
     val games: StateFlow<List<Game>> = _games.asStateFlow()

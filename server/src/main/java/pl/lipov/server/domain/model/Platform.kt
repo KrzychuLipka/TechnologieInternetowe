@@ -4,5 +4,8 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 enum class Platform {
-    GOG
+    ATARI,
+    AMIGA,
+    GOG,
+    STEAM
 }

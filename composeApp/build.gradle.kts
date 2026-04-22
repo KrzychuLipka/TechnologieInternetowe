@@ -17,25 +17,26 @@ kotlin {
             jvmTarget.set(JvmTarget.JVM_11)
         }
     }
-    
+
     jvm()
 
     js {
         browser()
         binaries.executable()
     }
-    
+
     @OptIn(ExperimentalWasmDsl::class)
     wasmJs {
         browser()
         binaries.executable()
     }
-    
+
     sourceSets {
         androidMain.dependencies {
             implementation(libs.compose.uiToolingPreview)
             implementation(libs.androidx.activity.compose)
             implementation(libs.ktor.client.okhttp)
+            implementation(libs.maplibre.sdk)
         }
         commonMain.dependencies {
             api("io.github.qdsfdhvh:image-loader:1.10.0")
@@ -63,6 +64,9 @@ kotlin {
         }
         wasmJsMain.dependencies {
             implementation(libs.ktor.client.js)
+        }
+        jsMain.dependencies {
+            implementation(libs.maplibre.sdk)
         }
     }
 }
