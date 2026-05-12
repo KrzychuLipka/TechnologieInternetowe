@@ -2,7 +2,6 @@ package pl.lipov.technologieinternetowe.data.repository
 
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.map
 import pl.lipov.technologieinternetowe.data.dataSource.GamesRemoteDataSource
 import pl.lipov.technologieinternetowe.data.mapper.toGame
 import pl.lipov.technologieinternetowe.domain.model.Game
@@ -12,12 +11,7 @@ class GamesRemoteRepository : GamesRepository {
 
     private val _games = MutableStateFlow<List<Game>>(emptyList())
 
-    override fun getAllGames(
-        magazineNumber: Int
-    ): Flow<List<Game>> =
-        _games.map { list ->
-            list.filter { it.magazineNumber == magazineNumber }
-        }
+    override fun getAllGames(): Flow<List<Game>> = _games
 
     override suspend fun toggleGameCompletion(
         gameId: String
@@ -31,7 +25,6 @@ class GamesRemoteRepository : GamesRepository {
                 completed = newCompletedValue
             )
         } catch (exception: Exception) {
-            // TODO: obsługa błędów (np. pokazanie komunikatu)
             println(exception.message)
             return
         }

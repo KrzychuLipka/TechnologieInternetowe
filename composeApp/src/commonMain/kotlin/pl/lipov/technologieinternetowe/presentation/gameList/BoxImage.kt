@@ -12,7 +12,7 @@ import com.seiko.imageloader.rememberImagePainter
 import org.jetbrains.compose.resources.painterResource
 import pl.lipov.technologieinternetowe.domain.model.Game
 import technologieinternetowe.composeapp.generated.resources.Res
-import technologieinternetowe.composeapp.generated.resources.retro9
+import technologieinternetowe.composeapp.generated.resources.retro10
 
 @Composable
 fun BoxImage(
@@ -33,8 +33,7 @@ fun BoxImage(
             if (!useUpperCase) {
                 useUpperCase = true
             }
-
-            painterResource(Res.drawable.retro9)
+            painterResource(Res.drawable.retro10)
         }
     )
 

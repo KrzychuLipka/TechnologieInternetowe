@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
-import pl.lipov.technologieinternetowe.data.repository.GamesLocalRepository
+import pl.lipov.technologieinternetowe.data.repository.GamesRemoteRepository
 import pl.lipov.technologieinternetowe.domain.model.Game
 import pl.lipov.technologieinternetowe.domain.useCase.GetAllGamesUseCase
 import pl.lipov.technologieinternetowe.domain.useCase.RefreshGamesUseCase
@@ -20,7 +20,7 @@ class GamesListViewModel : ViewModel() {
         private const val STOP_SUBSCRIPTION_TIMEOUT_MS = 5_000L
     }
 
-    private val repository = GamesLocalRepository()//GamesRemoteRepository()
+    private val repository = GamesRemoteRepository()
 
     private val getAllGamesUseCase = GetAllGamesUseCase(
         repository = repository
@@ -38,10 +38,8 @@ class GamesListViewModel : ViewModel() {
         }
     }
 
-    fun getAllGames(
-        magazineNumber: Int
-    ): StateFlow<List<Game>> =
-        getAllGamesUseCase(magazineNumber)
+    fun getAllGames(): StateFlow<List<Game>> =
+        getAllGamesUseCase()
             .stateIn(
                 scope = viewModelScope,
                 started = SharingStarted.WhileSubscribed(STOP_SUBSCRIPTION_TIMEOUT_MS),
