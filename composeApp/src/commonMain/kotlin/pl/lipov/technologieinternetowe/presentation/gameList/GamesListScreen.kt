@@ -25,14 +25,11 @@ import pl.lipov.technologieinternetowe.presentation.theme.DarkYellow
 import pl.lipov.technologieinternetowe.presentation.theme.Dimens
 import pl.lipov.technologieinternetowe.presentation.theme.GameBoxSize
 import technologieinternetowe.composeapp.generated.resources.Res
-import technologieinternetowe.composeapp.generated.resources.retro9
-
-private const val MAGAZINE_NUMBER = 9
+import technologieinternetowe.composeapp.generated.resources.retro10
 
 @Composable
 fun GamesListScreen(
-    modifier: Modifier = Modifier,
-    magazineNumber: Int = MAGAZINE_NUMBER
+    modifier: Modifier = Modifier
 ) {
     val viewModel: GamesListViewModel = viewModel { GamesListViewModel() }
 
@@ -40,7 +37,7 @@ fun GamesListScreen(
         modifier = modifier
     ) {
         Image(
-            painter = painterResource(Res.drawable.retro9),
+            painter = painterResource(Res.drawable.retro10),
             contentDescription = null,
             modifier = Modifier
                 .fillMaxSize()
@@ -61,7 +58,7 @@ fun GamesListScreen(
                     modifier = Modifier.padding(Dimens.PaddingSmall)
                 )
             }
-            val gamesState = viewModel.getAllGames(magazineNumber).collectAsState()
+            val gamesState = viewModel.getAllGames().collectAsState()
             Box(
                 modifier = Modifier.fillMaxSize(),
                 contentAlignment = Alignment.Center

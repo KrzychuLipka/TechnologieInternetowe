@@ -3,10 +3,7 @@ package pl.lipov.technologieinternetowe.domain.model
 data class Game(
     val id: String,
     val title: String,
-    val magazineNumber: Int = 9,
-    val platform: Platform,
+    val platform: Platform = Platform.GOG,
     val gameUrl: String? = null,
-    val lastPlayed: Int? = null,
-    val completed: Boolean = false,
-    val playable: Boolean = false
+    val completed: Boolean = false
 )

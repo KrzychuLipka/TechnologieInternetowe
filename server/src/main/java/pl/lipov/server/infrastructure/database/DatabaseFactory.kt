@@ -24,7 +24,6 @@ object DatabaseFactory {
                         it[title] = game.title
                         it[platform] = game.platform
                         it[gameUrl] = game.gameUrl
-                        it[playable] = game.playable
                         it[completed] = game.completed
                     }
                 }

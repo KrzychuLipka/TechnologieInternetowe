@@ -23,11 +23,10 @@ import pl.lipov.technologieinternetowe.presentation.theme.DarkYellow
 import pl.lipov.technologieinternetowe.presentation.theme.Dimens
 import pl.lipov.technologieinternetowe.presentation.theme.Yellow
 import technologieinternetowe.composeapp.generated.resources.Res
-import technologieinternetowe.composeapp.generated.resources.battle_net
 import technologieinternetowe.composeapp.generated.resources.ic_checked
+import technologieinternetowe.composeapp.generated.resources.ic_evercade
 import technologieinternetowe.composeapp.generated.resources.ic_gog
 import technologieinternetowe.composeapp.generated.resources.ic_play
-import technologieinternetowe.composeapp.generated.resources.ic_steam
 import technologieinternetowe.composeapp.generated.resources.ic_unchecked
 
 @Composable
@@ -67,9 +66,8 @@ fun GameItem(
             val gameUrl = game.gameUrl
             if (!gameUrl.isNullOrBlank()) {
                 val iconRes = when (game.platform) {
-                    Platform.BATTLE_NET -> Res.drawable.battle_net
                     Platform.GOG -> Res.drawable.ic_gog
-                    else -> Res.drawable.ic_steam
+                    Platform.EVERCADE -> Res.drawable.ic_evercade
                 }
                 Image(
                     painter = painterResource(iconRes),
@@ -83,19 +81,17 @@ fun GameItem(
                 Spacer(Modifier.width(Dimens.PaddingStandard))
             }
 
-            if (game.playable) {
-                Image(
-                    painter = painterResource(Res.drawable.ic_play),
-                    contentDescription = "Play",
-                    modifier = Modifier
-                        .padding(horizontal = Dimens.PaddingStandard)
-                        .width(32.dp)
-                        .height(32.dp)
-                        .clickable { onRunGameButtonClick(game) }
-                )
+            Image(
+                painter = painterResource(Res.drawable.ic_play),
+                contentDescription = "Play",
+                modifier = Modifier
+                    .padding(horizontal = Dimens.PaddingStandard)
+                    .width(32.dp)
+                    .height(32.dp)
+                    .clickable { onRunGameButtonClick(game) }
+            )
 
-                Spacer(Modifier.width(Dimens.PaddingStandard))
-            }
+            Spacer(Modifier.width(Dimens.PaddingStandard))
 
             val completionButton =
                 if (game.completed) Res.drawable.ic_checked else Res.drawable.ic_unchecked

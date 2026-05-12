@@ -10,7 +10,6 @@ fun ResultRow.toGame() = Game(
     title = this[GamesTable.title],
     platform = this[GamesTable.platform],
     gameUrl = this[GamesTable.gameUrl],
-    playable = this[GamesTable.playable],
     completed = this[GamesTable.completed]
 )
 
@@ -19,7 +18,6 @@ fun Game.toResponse() = GameResponse(
     title = this.title,
     platform = this.platform,
     gameUrl = this.gameUrl,
-    playable = this.playable,
     completed = this.completed
 )
 
