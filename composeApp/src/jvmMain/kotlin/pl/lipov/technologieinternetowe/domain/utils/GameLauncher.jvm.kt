@@ -7,26 +7,24 @@ import java.io.File
 import java.io.IOException
 import java.net.URI
 
-
-private const val GAME_FILE_EXTENSION = ".exe"
 private const val GAME_DIR = "D:/roms"
 
 actual suspend fun runGame(
     gameId: String
 ): Result<Unit> = withContext(Dispatchers.IO) {
-    val gameFile = File("$GAME_DIR/$gameId$GAME_FILE_EXTENSION")
 
-    if (!gameFile.exists()) {
+    val gameDirectory = File("$GAME_DIR/$gameId")
+
+    if (!gameDirectory.exists() || !gameDirectory.isDirectory) {
         return@withContext Result.failure(
-            IllegalArgumentException("Game file not found: ${gameFile.absolutePath}")
+            IllegalArgumentException(
+                "Game directory not found: ${gameDirectory.absolutePath}"
+            )
         )
     }
 
     try {
-        ProcessBuilder(gameFile.absolutePath)
-            .directory(gameFile.parentFile)
-            .redirectErrorStream(true)
-            .start()
+        Desktop.getDesktop().open(gameDirectory)
         Result.success(Unit)
     } catch (exception: IOException) {
         Result.failure(exception)

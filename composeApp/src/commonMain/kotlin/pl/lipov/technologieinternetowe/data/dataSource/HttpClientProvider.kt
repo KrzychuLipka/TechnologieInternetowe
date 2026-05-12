@@ -9,7 +9,7 @@ import io.ktor.http.URLProtocol
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
 
-const val HOST = "192.168.0.61"
+const val HOST = "10.70.84.180"
 const val PORT = 8080
 
 expect fun provideEngine(): HttpClientEngineFactory<*>
